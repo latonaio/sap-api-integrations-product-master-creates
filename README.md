@@ -54,9 +54,9 @@ accepter において 下記の例のように、データの種別（＝APIの�
 "deleted": false
 ```
   
-* 全データを取得する際のsample.jsonの記載例(2)  
+* 全データを登録する際のsample.jsonの記載例(2)  
 
-全データを取得する場合、sample.json は以下のように記載します。  
+全データを登録する場合、sample.json は以下のように記載します。  
 
 ```
 "api_schema": "SAPProductMasterCreate",
@@ -64,6 +64,7 @@ accepter において 下記の例のように、データの種別（＝APIの�
 "material_code": "",
 "deleted": false
 ```
+
 ## 指定されたデータ種別のコール
 
 accepter における データ種別 の指定に基づいて SAP_API_Caller 内の caller.go で API がコールされます。  
