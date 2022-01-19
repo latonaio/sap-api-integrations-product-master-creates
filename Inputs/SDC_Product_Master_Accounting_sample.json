@@ -4,7 +4,7 @@
 	"redis_key": "abcdefg",
 	"filepath": "/var/lib/aion/Data/rededge_sdc/abcdef.json",
 	"material": {
-		"Material": "21",
+		"Material": "5",
 		"IndustrySector": "",
 		"ProductType": "",
 		"BaseUnit": "",
@@ -101,22 +101,27 @@
 			"IsMarkedForDeletion": null
 		},
 		"ValuationArea": {
-			"ValuationArea": "DE10",
-			"ValuationClass": "",
-			"StandardPrice": "",
-			"PriceUnitQty": "",
-			"MovingAveragePrice": "",
-			"PriceLastChangeDate": "",
-			"PlannedPrice": "",
+			"ValuationArea": "0001",
+			"ValuationClass": "7920",
+			"StandardPrice": "1000",
+			"PriceUnitQty": "1",
+			"MovingAveragePrice": null,
+			"PriceLastChangeDate": null,
+			"PlannedPrice": null,
 			"IsMarkedForDeletion": null
 		},
 		"ProductDescription": {
 			"Language": "",
 			"ProductDescription": ""
+		},
+		"SalesTax": {
+			"Country": "",
+			"TaxCategory": "",
+			"TaxClassification": ""
 		}
 	},
 	"api_schema": "sap.s4.beh.product.v1.Product.Created.v1",
 	"accepter": ["Accounting"],
-	"material_code": "21",
+	"material_code": "5",
 	"deleted": false
 }

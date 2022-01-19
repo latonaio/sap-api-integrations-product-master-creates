@@ -4,24 +4,24 @@
 	"redis_key": "abcdefg",
 	"filepath": "/var/lib/aion/Data/rededge_sdc/abcdef.json",
 	"material": {
-		"Material": "5",
+		"Material": "",
 		"IndustrySector": "",
 		"ProductType": "",
 		"BaseUnit": "",
-		"ValidityStartDate": "",
+		"ValidityStartDate": null,
 		"ProductGroup": "",
-		"Division": "",
-		"GrossWeight": "",
-		"WeightUnit": "",
-		"SizeOrDimensionText": "",
-		"ProductStandardID": "",
-		"CreationDate": "",
-		"LastChangeDate": "",
+		"Division": null,
+		"GrossWeight": "0",
+		"WeightUnit": null,
+		"SizeOrDimensionText": null,
+		"ProductStandardID": null,
+		"CreationDate": null,
+		"LastChangeDate": null,
 		"IsMarkedForDeletion": null,
-		"NetWeight": "",
-		"ChangeNumber": "",
+		"NetWeight": null,
+		"ChangeNumber": null,
 		"Plant": {
-			"Plant": "0001",
+			"Plant": "",
 			"PurchasingGroup": "",
 			"ProductionInvtryManagedLoc": "",
 			"AvailabilityCheckType": "",
@@ -79,13 +79,13 @@
 				"ProductionSchedulingProfile": ""
 			},
 			"Quality": {
-				"MaximumStoragePeriod": null,
+				"MaximumStoragePeriod": "",
 				"QualityMgmtCtrlKey": "",
 				"MatlQualityAuthorizationGroup": "",
 				"HasPostToInspectionStock": null,
 				"InspLotDocumentationIsRequired": null,
 				"SuplrQualityManagementSystem": "",
-				"RecrrgInspIntervalTimeInDays": null,
+				"RecrrgInspIntervalTimeInDays": "",
 				"ProductQualityCertificateType": ""
 			}
 		},
@@ -115,13 +115,13 @@
 			"ProductDescription": ""
 		},
 		"SalesTax": {
-			"Country": "",
-			"TaxCategory": "",
-			"TaxClassification": ""
+			"Country": "DE",
+			"TaxCategory": "MWST",
+			"TaxClassification": "1"
 		}
 	},
-	"api_schema": "sap.s4.beh.product.v1.Product.Created.v1",
-	"accepter": ["Quality"],
+	"api_schema": "SAPProductMasterCreate",
+	"accepter": ["SalesTax"],
 	"material_code": "5",
 	"deleted": false
 }

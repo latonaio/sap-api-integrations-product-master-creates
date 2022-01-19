@@ -4,7 +4,7 @@
 	"redis_key": "abcdefg",
 	"filepath": "/var/lib/aion/Data/rededge_sdc/abcdef.json",
 	"material": {
-		"Material": "D20_EPDM_SMRT_S",
+		"Material": "5",
 		"IndustrySector": "",
 		"ProductType": "",
 		"BaseUnit": "",
@@ -21,17 +21,17 @@
 		"NetWeight": "",
 		"ChangeNumber": "",
 		"Plant": {
-			"Plant": "1010",
+			"Plant": "0001",
 			"PurchasingGroup": "",
 			"ProductionInvtryManagedLoc": "",
 			"AvailabilityCheckType": "",
 			"ProfitCenter": "",
-			"GoodsReceiptDuration": "",
+			"GoodsReceiptDuration": null,
 			"MRPType": "",
 			"MRPResponsible": "",
-			"MinimumLotSizeQuantity": "",
-			"MaximumLotSizeQuantity": "",
-			"FixedLotSizeQuantity": "",
+			"MinimumLotSizeQuantity": null,
+			"MaximumLotSizeQuantity": null,
+			"FixedLotSizeQuantity": null,
 			"IsBatchManagementRequired": null,
 			"ProcurementType": "",
 			"IsInternalBatchManaged": null,
@@ -113,10 +113,15 @@
 		"ProductDescription": {
 			"Language": "",
 			"ProductDescription": ""
+		},
+		"SalesTax": {
+			"Country": "",
+			"TaxCategory": "",
+			"TaxClassification": ""
 		}
 	},
 	"api_schema": "sap.s4.beh.product.v1.Product.Created.v1",
 	"accepter": ["Plant"],
-	"material_code": "D20_EPDM_SMRT_S",
+	"material_code": "5",
 	"deleted": false
 }

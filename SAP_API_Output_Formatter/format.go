@@ -17,7 +17,6 @@ func ConvertToGeneral(raw []byte, l *logger.Logger) (*General, error) {
 	data := pm.D
 	general := &General{
 		Product:             data.Product,
-		ProductDescription:  data.ToProductDesc.ToProductDescResults[0].ProductDescription,
 		BaseUnit:            data.BaseUnit,
 		ValidityStartDate:   data.ValidityStartDate,
 		ProductGroup:        data.ProductGroup,
@@ -26,6 +25,7 @@ func ConvertToGeneral(raw []byte, l *logger.Logger) (*General, error) {
 		WeightUnit:          data.WeightUnit,
 		SizeOrDimensionText: data.SizeOrDimensionText,
 		ProductStandardID:   data.ProductStandardID,
+		ProductDescription:  data.ToProductDesc.ToProductDescResults[0].ProductDescription,
 	}
 
 	return general, nil

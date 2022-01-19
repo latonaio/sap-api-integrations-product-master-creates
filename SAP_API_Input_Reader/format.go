@@ -18,19 +18,21 @@ func (sdc *SDC) ConvertToGeneral() *requests.General {
 		SizeOrDimensionText: sdc.Product.SizeOrDimensionText,
 		ProductStandardID:   sdc.Product.ProductStandardID,
 		IndustrySector:      sdc.Product.IndustrySector,
-		ToProductDesc:       sdc.ConvertToToProductDesc(),
+		ToProductDesc: &struct {
+			ToProductDescResults []*requests.ToProductDesc `json:"results"`
+		}{
+			ToProductDescResults: []*requests.ToProductDesc{
+				sdc.ConvertToToDescription(),
+			},
+		},
 	}
 }
 
-func (sdc *SDC) ConvertToToProductDesc() *requests.ToProductDesc {
+func (sdc *SDC) ConvertToToDescription() *requests.ToProductDesc {
 	return &requests.ToProductDesc{
-		ToProductDescResults: []requests.ToProductDescResults{
-			{
-				Product:            sdc.Product.Product,
-				Language:           sdc.Product.ProductDescription.Language,
-				ProductDescription: sdc.Product.ProductDescription.ProductDescription,
-			},
-		},
+		Product:            sdc.Product.Product,
+		Language:           sdc.Product.ProductDescription.Language,
+		ProductDescription: sdc.Product.ProductDescription.ProductDescription,
 	}
 }
 
@@ -87,10 +89,10 @@ func (sdc *SDC) ConvertToMRPArea() *requests.MRPArea {
 
 func (sdc *SDC) ConvertToProcurement() *requests.Procurement {
 	return &requests.Procurement{
-		Product:                       sdc.Product.Product,
-		Plant:                         sdc.Product.Plant.Plant,
-		IsAutoPurOrdCreationAllowed:   sdc.Product.Plant.Procurement.IsAutoPurOrdCreationAllowed,
-		IsSourceListRequired:          sdc.Product.Plant.Procurement.IsSourceListRequired,
+		Product:                     sdc.Product.Product,
+		Plant:                       sdc.Product.Plant.Plant,
+		IsAutoPurOrdCreationAllowed: sdc.Product.Plant.Procurement.IsAutoPurOrdCreationAllowed,
+		IsSourceListRequired:        sdc.Product.Plant.Procurement.IsSourceListRequired,
 	}
 }
 
@@ -110,24 +112,24 @@ func (sdc *SDC) ConvertToWorkScheduling() *requests.WorkScheduling {
 
 func (sdc *SDC) ConvertToSalesPlant() *requests.SalesPlant {
 	return &requests.SalesPlant{
-		Product:                       sdc.Product.Product,
-		Plant:                         sdc.Product.Plant.Plant,
-		LoadingGroup:                  sdc.Product.Plant.SalesPlant.LoadingGroup,
-		AvailabilityCheckType:         sdc.Product.Plant.SalesPlant.AvailabilityCheckType,
+		Product:               sdc.Product.Product,
+		Plant:                 sdc.Product.Plant.Plant,
+		LoadingGroup:          sdc.Product.Plant.SalesPlant.LoadingGroup,
+		AvailabilityCheckType: sdc.Product.Plant.SalesPlant.AvailabilityCheckType,
 	}
 }
 
 func (sdc *SDC) ConvertToAccounting() *requests.Accounting {
 	return &requests.Accounting{
-		Product:                       sdc.Product.Product,
-		ValuationArea:                 sdc.Product.Accounting.ValuationArea,
-		ValuationClass:                sdc.Product.Accounting.ValuationClass,
-		StandardPrice:                 sdc.Product.Accounting.StandardPrice,
-		PriceUnitQty:                  sdc.Product.Accounting.PriceUnitQty,
-		MovingAveragePrice:            sdc.Product.Accounting.MovingAveragePrice,
-		PriceLastChangeDate:           sdc.Product.Accounting.PriceLastChangeDate,
-		PlannedPrice:                  sdc.Product.Accounting.PlannedPrice,
-		IsMarkedForDeletion:           sdc.Product.Accounting.IsMarkedForDeletion,
+		Product:             sdc.Product.Product,
+		ValuationArea:       sdc.Product.Accounting.ValuationArea,
+		ValuationClass:      sdc.Product.Accounting.ValuationClass,
+		StandardPrice:       sdc.Product.Accounting.StandardPrice,
+		PriceUnitQty:        sdc.Product.Accounting.PriceUnitQty,
+		MovingAveragePrice:  sdc.Product.Accounting.MovingAveragePrice,
+		PriceLastChangeDate: sdc.Product.Accounting.PriceLastChangeDate,
+		PlannedPrice:        sdc.Product.Accounting.PlannedPrice,
+		IsMarkedForDeletion: sdc.Product.Accounting.IsMarkedForDeletion,
 	}
 }
 
@@ -143,14 +145,30 @@ func (sdc *SDC) ConvertToSalesOrganization() *requests.SalesOrganization {
 		SalesMeasureUnit:               sdc.Product.SalesOrganization.SalesMeasureUnit,
 		ProductHierarchy:               sdc.Product.SalesOrganization.ProductHierarchy,
 		IsMarkedForDeletion:            sdc.Product.SalesOrganization.IsMarkedForDeletion,
+		ToSalesTax: struct {
+			ToSalesTaxResults []*requests.ToSalesTax `json:"results"`
+		}{
+			ToSalesTaxResults: []*requests.ToSalesTax{
+				sdc.ConvertToToSalesTax(),
+			},
+		},
+	}
+}
+
+func (sdc *SDC) ConvertToToSalesTax() *requests.ToSalesTax {
+	return &requests.ToSalesTax{
+		Product:           sdc.Product.Product,
+		Country:           sdc.Product.SalesTax.Country,
+		TaxCategory:       sdc.Product.SalesTax.TaxCategory,
+		TaxClassification: sdc.Product.SalesTax.TaxClassification,
 	}
 }
 
 func (sdc *SDC) ConvertToProductDesc() *requests.ProductDesc {
 	return &requests.ProductDesc{
-		Product:                        sdc.Product.Product,
-		Language:                       sdc.Product.ProductDescription.Language,
-		ProductDescription:             sdc.Product.ProductDescription.ProductDescription,
+		Product:            sdc.Product.Product,
+		Language:           sdc.Product.ProductDescription.Language,
+		ProductDescription: sdc.Product.ProductDescription.ProductDescription,
 	}
 }
 

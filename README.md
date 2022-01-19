@@ -34,6 +34,7 @@ sap-api-integrations-product-master-creates には、次の API をコールす�
 * A_ProductValuationAccount（品目マスタ - 評価エリアデータ）
 * A_ProductSalesDelivery（品目マスタ - 販売組織データ）
 * A_ProductPlantQualityMgmt（品目マスタ - 品質管理データ）
+* A_ProductSalesTax（品目マスタ - 販売税データ）
 * A_ProductDescription（品目マスタ - テキストデータ）  
 
 ## SAP API Bussiness Hub の API の選択的コール

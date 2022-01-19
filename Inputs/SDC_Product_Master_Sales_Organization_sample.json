@@ -4,24 +4,24 @@
 	"redis_key": "abcdefg",
 	"filepath": "/var/lib/aion/Data/rededge_sdc/abcdef.json",
 	"material": {
-		"Material": "21",
+		"Material": "5",
 		"IndustrySector": "",
 		"ProductType": "",
 		"BaseUnit": "",
-		"ValidityStartDate": "",
-		"ProductGroup": "",
-		"Division": "",
-		"GrossWeight": "",
-		"WeightUnit": "",
-		"SizeOrDimensionText": "",
-		"ProductStandardID": "",
-		"CreationDate": "",
-		"LastChangeDate": "",
+		"ValidityStartDate": null,
+		"ProductGroup": "01",
+		"Division": null,
+		"GrossWeight": "0",
+		"WeightUnit": null,
+		"SizeOrDimensionText": null,
+		"ProductStandardID": null,
+		"CreationDate": null,
+		"LastChangeDate": null,
 		"IsMarkedForDeletion": null,
-		"NetWeight": "",
-		"ChangeNumber": "",
+		"NetWeight": null,
+		"ChangeNumber": null,
 		"Plant": {
-			"Plant": "1010",
+			"Plant": "",
 			"PurchasingGroup": "",
 			"ProductionInvtryManagedLoc": "",
 			"AvailabilityCheckType": "",
@@ -32,13 +32,13 @@
 			"MinimumLotSizeQuantity": "",
 			"MaximumLotSizeQuantity": "",
 			"FixedLotSizeQuantity": "",
-			"IsBatchManagementRequired": true,
+			"IsBatchManagementRequired": null,
 			"ProcurementType": "",
-			"IsInternalBatchManaged": true,
+			"IsInternalBatchManaged": null,
 			"GoodsIssueUnit": "",
 			"MaterialFreightGroup": "",
 			"ProductLogisticsHandlingGroup": "",
-			"IsMarkedForDeletion": false,
+			"IsMarkedForDeletion": null,
 			"MRPArea": {
 				"MRPArea": "",
 				"MRPType": "",
@@ -90,15 +90,15 @@
 			}
 		},
 		"Sales_Organization": {
-			"ProductSalesOrg": "DE10",
-			"ProductDistributionChnl": "10",
+			"ProductSalesOrg": "0001",
+			"ProductDistributionChnl": "01",
 			"SupplyingPlant": "",
 			"PriceSpecificationProductGroup": "",
-			"AccountDetnProductGroup": "",
-			"ItemCategoryGroup": "",
+			"AccountDetnProductGroup": "01",
+			"ItemCategoryGroup": "NORM",
 			"SalesMeasureUnit": "",
 			"ProductHierarchy": "",
-			"IsMarkedForDeletion": false
+			"IsMarkedForDeletion": null
 		},
 		"ValuationArea": {
 			"ValuationArea": "",
@@ -108,11 +108,20 @@
 			"MovingAveragePrice": "",
 			"PriceLastChangeDate": "",
 			"PlannedPrice": "",
-			"IsMarkedForDeletion": false
+			"IsMarkedForDeletion": null
+		},
+		"ProductDescription": {
+			"Language": "",
+			"ProductDescription": ""
+		},
+		"SalesTax": {
+			"Country": "DE",
+			"TaxCategory": "MWST",
+			"TaxClassification": "1"
 		}
 	},
-	"api_schema": "sap.s4.beh.product.v1.Product.Created.v1",
+	"api_schema": "SAPProductMasterCreate",
 	"accepter": ["SalesOrganization"],
-	"material_code": "21",
+	"material_code": "5",
 	"deleted": false
 }

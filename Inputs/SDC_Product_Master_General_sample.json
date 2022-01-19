@@ -9,7 +9,7 @@
 		"ProductType": "FERT",
 		"BaseUnit": "PC",
 		"ValidityStartDate": null,
-		"ProductGroup": null,
+		"ProductGroup": "01",
 		"Division": null,
 		"GrossWeight": "0",
 		"WeightUnit": null,
@@ -113,6 +113,11 @@
 		"ProductDescription": {
 			"Language": "EN",
 			"ProductDescription": "test"
+		},
+		"SalesTax": {
+			"Country": "",
+			"TaxCategory": "",
+			"TaxClassification": ""
 		}
 	},
 	"api_schema": "SAPProductMasterCreate",

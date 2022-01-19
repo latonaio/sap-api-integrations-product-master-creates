@@ -156,7 +156,7 @@ type SDC struct {
 			IsMarkedForDeletion            *bool   `json:"IsMarkedForDeletion"`
 		} `json:"Sales_Organization"`
 		Accounting struct {
-			ValuationArea       string `json:"ValuationArea"`
+			ValuationArea       string  `json:"ValuationArea"`
 			ValuationClass      *string `json:"ValuationClass"`
 			StandardPrice       *string `json:"StandardPrice"`
 			PriceUnitQty        *string `json:"PriceUnitQty"`
@@ -169,6 +169,11 @@ type SDC struct {
 			Language           string  `json:"Language"`
 			ProductDescription *string `json:"ProductDescription"`
 		} `json:"ProductDescription"`
+		SalesTax struct {
+			Country           string  `json:"Country"`
+			TaxCategory       string  `json:"TaxCategory"`
+			TaxClassification *string `json:"TaxClassification"`
+		} `json:"SalesTax"`
 	} `json:"material"`
 	APISchema    string   `json:"api_schema"`
 	Accepter     []string `json:"accepter"`
