@@ -14,6 +14,6 @@ type General struct {
 	ProductStandardID   *string `json:"ProductStandardID"`
 	IndustrySector      *string `json:"IndustrySector"`
 	ToProductDesc       *struct {
-		ToProductDescResults []*ToProductDesc `json:"results"`
+		ToProductDescResults []*ProductDesc `json:"results"`
 	} `json:"to_Description"`
 }

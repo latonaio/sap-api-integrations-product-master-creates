@@ -1,0 +1,18 @@
+{
+    "cursor": "/home/ampamman/go/src/sap-api-integrations-product-master-creates/SAP_API_Caller/caller.go#L402",
+    "function": "sap-api-integrations-product-master-creates/SAP_API_Caller.(*SAPAPICaller).Quality",
+    "level": "INFO",
+    "message": {
+        "Product": "51",
+        "Plant": "0001",
+        "MaximumStoragePeriod": "0",
+        "QualityMgmtCtrlKey": "",
+        "MatlQualityAuthorizationGroup": "",
+        "HasPostToInspectionStock": false,
+        "InspLotDocumentationIsRequired": false,
+        "SuplrQualityManagementSystem": "",
+        "RecrrgInspIntervalTimeInDays": "0",
+        "ProductQualityCertificateType": ""
+    },
+    "time": "2022-01-20T14:12:21.221205901+09:00"
+}

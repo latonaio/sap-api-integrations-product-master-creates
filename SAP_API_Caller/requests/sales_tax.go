@@ -1,6 +1,6 @@
 package requests
 
-type ToSalesTax struct {
+type SalesTax struct {
 	Product           string  `json:"Product"`
 	Country           string  `json:"Country"`
 	TaxCategory       string  `json:"TaxCategory"`

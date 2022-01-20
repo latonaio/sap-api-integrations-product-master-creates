@@ -5,34 +5,27 @@ import (
 )
 
 func (sdc *SDC) ConvertToGeneral() *requests.General {
+	data := sdc.Product
 	return &requests.General{
-		Product:             sdc.Product.Product,
-		ProductType:         sdc.Product.ProductType,
-		IsMarkedForDeletion: sdc.Product.IsMarkedForDeletion,
-		GrossWeight:         sdc.Product.GrossWeight,
-		WeightUnit:          sdc.Product.WeightUnit,
-		ProductGroup:        sdc.Product.ProductGroup,
-		BaseUnit:            sdc.Product.BaseUnit,
-		Division:            sdc.Product.Division,
-		ValidityStartDate:   sdc.Product.ValidityStartDate,
-		SizeOrDimensionText: sdc.Product.SizeOrDimensionText,
-		ProductStandardID:   sdc.Product.ProductStandardID,
-		IndustrySector:      sdc.Product.IndustrySector,
+		Product:             data.Product,
+		ProductType:         data.ProductType,
+		IsMarkedForDeletion: data.IsMarkedForDeletion,
+		GrossWeight:         data.GrossWeight,
+		WeightUnit:          data.WeightUnit,
+		ProductGroup:        data.ProductGroup,
+		BaseUnit:            data.BaseUnit,
+		Division:            data.Division,
+		ValidityStartDate:   data.ValidityStartDate,
+		SizeOrDimensionText: data.SizeOrDimensionText,
+		ProductStandardID:   data.ProductStandardID,
+		IndustrySector:      data.IndustrySector,
 		ToProductDesc: &struct {
-			ToProductDescResults []*requests.ToProductDesc `json:"results"`
+			ToProductDescResults []*requests.ProductDesc `json:"results"`
 		}{
-			ToProductDescResults: []*requests.ToProductDesc{
-				sdc.ConvertToToDescription(),
+			ToProductDescResults: []*requests.ProductDesc{
+				sdc.ConvertToProductDesc(),
 			},
 		},
-	}
-}
-
-func (sdc *SDC) ConvertToToDescription() *requests.ToProductDesc {
-	return &requests.ToProductDesc{
-		Product:            sdc.Product.Product,
-		Language:           sdc.Product.ProductDescription.Language,
-		ProductDescription: sdc.Product.ProductDescription.ProductDescription,
 	}
 }
 
@@ -146,17 +139,17 @@ func (sdc *SDC) ConvertToSalesOrganization() *requests.SalesOrganization {
 		ProductHierarchy:               sdc.Product.SalesOrganization.ProductHierarchy,
 		IsMarkedForDeletion:            sdc.Product.SalesOrganization.IsMarkedForDeletion,
 		ToSalesTax: struct {
-			ToSalesTaxResults []*requests.ToSalesTax `json:"results"`
+			ToSalesTaxResults []*requests.SalesTax `json:"results"`
 		}{
-			ToSalesTaxResults: []*requests.ToSalesTax{
-				sdc.ConvertToToSalesTax(),
+			ToSalesTaxResults: []*requests.SalesTax{
+				sdc.ConvertToSalesTax(),
 			},
 		},
 	}
 }
 
-func (sdc *SDC) ConvertToToSalesTax() *requests.ToSalesTax {
-	return &requests.ToSalesTax{
+func (sdc *SDC) ConvertToSalesTax() *requests.SalesTax {
+	return &requests.SalesTax{
 		Product:           sdc.Product.Product,
 		Country:           sdc.Product.SalesTax.Country,
 		TaxCategory:       sdc.Product.SalesTax.TaxCategory,

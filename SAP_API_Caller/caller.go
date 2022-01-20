@@ -31,19 +31,19 @@ func NewSAPAPICaller(baseUrl, sapClientNumber string, postClient *sap_api_post_h
 }
 
 func (c *SAPAPICaller) AsyncPostProductMaster(
-	general           *requests.General,
-	plant             *requests.Plant,
-	mrpArea           *requests.MRPArea,
-	procurement       *requests.Procurement,
-    workScheduling    *requests.WorkScheduling,
-	salesPlant        *requests.SalesPlant,
-	accounting        *requests.Accounting,
+	general *requests.General,
+	plant *requests.Plant,
+	mrpArea *requests.MRPArea,
+	procurement *requests.Procurement,
+	workScheduling *requests.WorkScheduling,
+	salesPlant *requests.SalesPlant,
+	accounting *requests.Accounting,
 	salesOrganization *requests.SalesOrganization,
-	productDesc       *requests.ProductDesc,
-	quality           *requests.Quality,
+	productDesc *requests.ProductDesc,
+	quality *requests.Quality,
 	accepter []string) {
 	wg := &sync.WaitGroup{}
-	wg.Add(1)
+	wg.Add(len(accepter))
 	for _, fn := range accepter {
 		switch fn {
 		case "General":
@@ -62,40 +62,40 @@ func (c *SAPAPICaller) AsyncPostProductMaster(
 				wg.Done()
 			}()
 		case "Procurement":
-		 	func() {
-		 		c.Procurement(procurement)
-		 		wg.Done()
-		 	}()
+			func() {
+				c.Procurement(procurement)
+				wg.Done()
+			}()
 		case "WorkScheduling":
 			func() {
-		 		c.WorkScheduling(workScheduling)
-		 		wg.Done()
+				c.WorkScheduling(workScheduling)
+				wg.Done()
 			}()
 		case "SalesPlant":
-		 	func() {
-		 		c.SalesPlant(salesPlant)
-		 		wg.Done()
-		 	}()
+			func() {
+				c.SalesPlant(salesPlant)
+				wg.Done()
+			}()
 		case "Accounting":
-		 	func() {
-		 		c.Accounting(accounting)
-		 		wg.Done()
+			func() {
+				c.Accounting(accounting)
+				wg.Done()
 			}()
 		case "SalesOrganization":
-		 	func() {
-		 		c.SalesOrganization(salesOrganization)
-		 		wg.Done()
+			func() {
+				c.SalesOrganization(salesOrganization)
+				wg.Done()
 			}()
 		case "ProductDesc":
-		 	func() {
-		 		c.ProductDesc(productDesc)
-		 		wg.Done()
-		 	}()
+			func() {
+				c.ProductDesc(productDesc)
+				wg.Done()
+			}()
 		case "Quality":
-		 	func() {
-		 		c.Quality(quality)
-		 		wg.Done()
-		 	}()
+			func() {
+				c.Quality(quality)
+				wg.Done()
+			}()
 		default:
 			wg.Done()
 		}

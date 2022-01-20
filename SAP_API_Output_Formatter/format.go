@@ -15,8 +15,11 @@ func ConvertToGeneral(raw []byte, l *logger.Logger) (*General, error) {
 		return nil, xerrors.Errorf("cannot convert to General. raw data is:\n%v\nunmarshal error: %w", string(raw), err)
 	}
 	data := pm.D
+
 	general := &General{
 		Product:             data.Product,
+		IndustrySector:      data.IndustrySector,
+		ProductType:         data.ProductType,
 		BaseUnit:            data.BaseUnit,
 		ValidityStartDate:   data.ValidityStartDate,
 		ProductGroup:        data.ProductGroup,
@@ -25,7 +28,12 @@ func ConvertToGeneral(raw []byte, l *logger.Logger) (*General, error) {
 		WeightUnit:          data.WeightUnit,
 		SizeOrDimensionText: data.SizeOrDimensionText,
 		ProductStandardID:   data.ProductStandardID,
-		ProductDescription:  data.ToProductDesc.ToProductDescResults[0].ProductDescription,
+		CreationDate:        data.CreationDate,
+		LastChangeDate:      data.LastChangeDate,
+		IsMarkedForDeletion: data.IsMarkedForDeletion,
+		NetWeight:           data.NetWeight,
+		ChangeNumber:        data.ChangeNumber,
+		ToProductDesc:       data.ToProductDesc.ToProductDescResults[0],
 	}
 
 	return general, nil
@@ -35,7 +43,7 @@ func ConvertToPlant(raw []byte, l *logger.Logger) (*Plant, error) {
 	p := &responses.Plant{}
 	err := json.Unmarshal(raw, p)
 	if err != nil {
-		return nil, xerrors.Errorf("cannot convert to Plant. unmarshal error: %w", err)
+		return nil, xerrors.Errorf("cannot convert to Plant. raw data is:\n%v\nunmarshal error: %w", string(raw), err)
 	}
 	data := p.D
 	plant := &Plant{
@@ -67,49 +75,49 @@ func ConvertToMRPArea(raw []byte, l *logger.Logger) (*MRPArea, error) {
 	p := &responses.MRPArea{}
 	err := json.Unmarshal(raw, p)
 	if err != nil {
-		return nil, xerrors.Errorf("cannot convert to MRPArea. unmarshal error: %w", err)
+		return nil, xerrors.Errorf("cannot convert to MRPArea. raw data is:\n%v\nunmarshal error: %w", string(raw), err)
 	}
 	data := p.D
-	mRPArea := &MRPArea{
- 		Product:                       data.Product,
- 		Plant:                         data.Plant,
- 		MRPArea:                       data.MRPArea,
- 		MRPType:                       data.MRPType,
- 		MRPResponsible:                data.MRPResponsible,
- 		MRPGroup:                      data.MRPGroup,
- 		ReorderThresholdQuantity:      data.ReorderThresholdQuantity,
- 		PlanningTimeFence:             data.PlanningTimeFence,
- 		LotSizingProcedure:            data.LotSizingProcedure,
- 		LotSizeRoundingQuantity:       data.LotSizeRoundingQuantity,
- 		MinimumLotSizeQuantity:        data.MinimumLotSizeQuantity,
- 		MaximumLotSizeQuantity:        data.MaximumLotSizeQuantity,
- 		MaximumStockQuantity:          data.MaximumStockQuantity,
- 		ProcurementSubType:            data.ProcurementSubType,
- 		DfltStorageLocationExtProcmt:  data.DfltStorageLocationExtProcmt,
- 		MRPPlanningCalendar:           data.MRPPlanningCalendar,
- 		SafetyStockQuantity:           data.SafetyStockQuantity,
- 		SafetyDuration:                data.SafetyDuration,
- 		FixedLotSizeQuantity:          data.FixedLotSizeQuantity,
- 		PlannedDeliveryDurationInDays: data.PlannedDeliveryDurationInDays,
- 		StorageLocation:               data.StorageLocation,
- 		IsMarkedForDeletion:           data.IsMarkedForDeletion,
+	mrpArea := &MRPArea{
+		Product:                       data.Product,
+		Plant:                         data.Plant,
+		MRPArea:                       data.MRPArea,
+		MRPType:                       data.MRPType,
+		MRPResponsible:                data.MRPResponsible,
+		MRPGroup:                      data.MRPGroup,
+		ReorderThresholdQuantity:      data.ReorderThresholdQuantity,
+		PlanningTimeFence:             data.PlanningTimeFence,
+		LotSizingProcedure:            data.LotSizingProcedure,
+		LotSizeRoundingQuantity:       data.LotSizeRoundingQuantity,
+		MinimumLotSizeQuantity:        data.MinimumLotSizeQuantity,
+		MaximumLotSizeQuantity:        data.MaximumLotSizeQuantity,
+		MaximumStockQuantity:          data.MaximumStockQuantity,
+		ProcurementSubType:            data.ProcurementSubType,
+		DfltStorageLocationExtProcmt:  data.DfltStorageLocationExtProcmt,
+		MRPPlanningCalendar:           data.MRPPlanningCalendar,
+		SafetyStockQuantity:           data.SafetyStockQuantity,
+		SafetyDuration:                data.SafetyDuration,
+		FixedLotSizeQuantity:          data.FixedLotSizeQuantity,
+		PlannedDeliveryDurationInDays: data.PlannedDeliveryDurationInDays,
+		StorageLocation:               data.StorageLocation,
+		IsMarkedForDeletion:           data.IsMarkedForDeletion,
 	}
 
-	return mRPArea, nil
+	return mrpArea, nil
 }
 
 func ConvertToProcurement(raw []byte, l *logger.Logger) (*Procurement, error) {
 	p := &responses.Procurement{}
 	err := json.Unmarshal(raw, p)
 	if err != nil {
-		return nil, xerrors.Errorf("cannot convert to Procurement. unmarshal error: %w", err)
+		return nil, xerrors.Errorf("cannot convert to Procurement. raw data is:\n%v\nunmarshal error: %w", string(raw), err)
 	}
 	data := p.D
 	procurement := &Procurement{
- 		Product:                     data.Product,
- 		Plant:                       data.Plant,
- 		IsAutoPurOrdCreationAllowed: data.IsAutoPurOrdCreationAllowed,
- 		IsSourceListRequired:        data.IsSourceListRequired,
+		Product:                     data.Product,
+		Plant:                       data.Plant,
+		IsAutoPurOrdCreationAllowed: data.IsAutoPurOrdCreationAllowed,
+		IsSourceListRequired:        data.IsSourceListRequired,
 	}
 
 	return procurement, nil
@@ -119,7 +127,7 @@ func ConvertToWorkScheduling(raw []byte, l *logger.Logger) (*WorkScheduling, err
 	p := &responses.WorkScheduling{}
 	err := json.Unmarshal(raw, p)
 	if err != nil {
-		return nil, xerrors.Errorf("cannot convert to WorkScheduling. unmarshal error: %w", err)
+		return nil, xerrors.Errorf("cannot convert to WorkScheduling. raw data is:\n%v\nunmarshal error: %w", string(raw), err)
 	}
 	data := p.D
 	workScheduling := &WorkScheduling{
@@ -141,7 +149,7 @@ func ConvertToSalesPlant(raw []byte, l *logger.Logger) (*SalesPlant, error) {
 	p := &responses.SalesPlant{}
 	err := json.Unmarshal(raw, p)
 	if err != nil {
-		return nil, xerrors.Errorf("cannot convert to SalesPlant. unmarshal error: %w", err)
+		return nil, xerrors.Errorf("cannot convert to SalesPlant. raw data is:\n%v\nunmarshal error: %w", string(raw), err)
 	}
 	data := p.D
 	salesPlant := &SalesPlant{
@@ -158,7 +166,7 @@ func ConvertToAccounting(raw []byte, l *logger.Logger) (*Accounting, error) {
 	p := &responses.Accounting{}
 	err := json.Unmarshal(raw, p)
 	if err != nil {
-		return nil, xerrors.Errorf("cannot convert to Accounting. unmarshal error: %w", err)
+		return nil, xerrors.Errorf("cannot convert to Accounting. raw data is:\n%v\nunmarshal error: %w", string(raw), err)
 	}
 	data := p.D
 	accounting := &Accounting{
@@ -180,7 +188,7 @@ func ConvertToSalesOrganization(raw []byte, l *logger.Logger) (*SalesOrganizatio
 	p := &responses.SalesOrganization{}
 	err := json.Unmarshal(raw, p)
 	if err != nil {
-		return nil, xerrors.Errorf("cannot convert to SalesOrganization. unmarshal error: %w", err)
+		return nil, xerrors.Errorf("cannot convert to SalesOrganization. raw data is:\n%v\nunmarshal error: %w", string(raw), err)
 	}
 	data := p.D
 	salesOrganization := &SalesOrganization{
@@ -203,13 +211,13 @@ func ConvertToProductDesc(raw []byte, l *logger.Logger) (*ProductDesc, error) {
 	p := &responses.ProductDesc{}
 	err := json.Unmarshal(raw, p)
 	if err != nil {
-		return nil, xerrors.Errorf("cannot convert to ProductDesc. unmarshal error: %w", err)
+		return nil, xerrors.Errorf("cannot convert to ProductDesc. raw data is:\n%v\nunmarshal error: %w", string(raw), err)
 	}
 	data := p.D
 	productDesc := &ProductDesc{
- 			Product:            data.Product,
- 			Language:           data.Language,
- 			ProductDescription: data.ProductDescription,
+		Product:            data.Product,
+		Language:           data.Language,
+		ProductDescription: data.ProductDescription,
 	}
 
 	return productDesc, nil
@@ -219,7 +227,7 @@ func ConvertToQuality(raw []byte, l *logger.Logger) (*Quality, error) {
 	p := &responses.Quality{}
 	err := json.Unmarshal(raw, p)
 	if err != nil {
-		return nil, xerrors.Errorf("cannot convert to Quality. unmarshal error: %w", err)
+		return nil, xerrors.Errorf("cannot convert to Quality. raw data is:\n%v\nunmarshal error: %w", string(raw), err)
 	}
 	data := p.D
 	quality := &Quality{

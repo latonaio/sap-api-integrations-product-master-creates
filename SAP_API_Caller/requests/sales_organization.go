@@ -12,6 +12,6 @@ type SalesOrganization struct {
 	ProductHierarchy               *string `json:"ProductHierarchy"`
 	IsMarkedForDeletion            *bool   `json:"IsMarkedForDeletion"`
 	ToSalesTax                     struct {
-		ToSalesTaxResults []*ToSalesTax `json:"results"`
+		ToSalesTaxResults []*SalesTax `json:"results"`
 	} `json:"to_SalesTax"`
 }
