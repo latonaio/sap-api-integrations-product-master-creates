@@ -149,27 +149,36 @@ func (c *SAPAPICaller) AsyncPostProductMaster(
 ## Output  
 本マイクロサービスでは、[golang-logging-library](https://github.com/latonaio/golang-logging-library) により、以下のようなデータがJSON形式で出力されます。  
 以下の sample.json の例は、SAP 品目マスタ の 一般データ が登録された結果の JSON の例です。  
-以下の項目のうち、"Material" ～ "ProductStandardID" は、/SAP_API_Output_Formatter/type.go 内 の Type General {} による出力結果です。"cursor" ～ "time"は、golang-logging-library による 定型フォーマットの出力結果です。  
+以下の項目のうち、"Product" ～ "ProductDescription" は、/SAP_API_Output_Formatter/type.go 内 の Type General {} による出力結果です。"cursor" ～ "time"は、golang-logging-library による 定型フォーマットの出力結果です。  
 
 ```
 {
-	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-product-master-creates/SAP_API_Caller/caller.go#L93",
+	"cursor": "/home/ampamman/go/src/sap-api-integrations-product-master-creates/SAP_API_Caller/caller.go#L113",
 	"function": "sap-api-integrations-product-master-creates/SAP_API_Caller.(*SAPAPICaller).General",
 	"level": "INFO",
-	"message": [
-		{
-			"Material": "A001",
-			"Product_desc": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product('A001')/to_Description",
-			"BaseUnit": "AU",
-			"ValidityStartDate": "",
-			"ProductGroup": "A001",
-			"Division": "00",
-			"GrossWeight": "0.000",
-			"WeightUnit": "KG",
-			"SizeOrDimensionText": "",
-			"ProductStandardID": ""
+	"message": {
+		"Product": "52",
+		"IndustrySector": "M",
+		"ProductType": "FERT",
+		"BaseUnit": "PC",
+		"ValidityStartDate": "",
+		"ProductGroup": "01",
+		"Division": "",
+		"GrossWeight": "0.000",
+		"WeightUnit": "",
+		"SizeOrDimensionText": "",
+		"ProductStandardID": "",
+		"CreationDate": "",
+		"LastChangeDate": "",
+		"IsMarkedForDeletion": false,
+		"NetWeight": "0.000",
+		"ChangeNumber": "",
+		"to_Description": {
+			"Product": "",
+			"Language": "EN",
+			"ProductDescription": "test"
 		}
-	],
-	"time": "2021-12-22T10:19:54.310555+09:00"
+	},
+	"time": "2022-01-20T16:37:40.635494424+09:00"
 }
 ```
