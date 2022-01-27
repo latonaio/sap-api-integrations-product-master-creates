@@ -14,6 +14,7 @@ func (sdc *SDC) ConvertToGeneral() *requests.General {
 		WeightUnit:          data.WeightUnit,
 		ProductGroup:        data.ProductGroup,
 		BaseUnit:            data.BaseUnit,
+		NetWeight:           data.NetWeight,
 		Division:            data.Division,
 		ValidityStartDate:   data.ValidityStartDate,
 		SizeOrDimensionText: data.SizeOrDimensionText,
@@ -30,8 +31,8 @@ func (sdc *SDC) ConvertToGeneral() *requests.General {
 }
 
 func (sdc *SDC) ConvertToPlant() *requests.Plant {
-    dataProduct := sdc.Product
-    data := sdc.Product.Plant
+	dataProduct := sdc.Product
+	data := sdc.Product.Plant
 	return &requests.Plant{
 		Product:                       dataProduct.Product,
 		Plant:                         data.Plant,
@@ -56,9 +57,9 @@ func (sdc *SDC) ConvertToPlant() *requests.Plant {
 }
 
 func (sdc *SDC) ConvertToMRPArea() *requests.MRPArea {
-    dataProduct := sdc.Product
+	dataProduct := sdc.Product
 	dataPlant := sdc.Product.Plant
-    data := sdc.Product.Plant.MRPArea
+	data := sdc.Product.Plant.MRPArea
 	return &requests.MRPArea{
 		Product:                       dataProduct.Product,
 		Plant:                         dataPlant.Plant,
@@ -86,9 +87,9 @@ func (sdc *SDC) ConvertToMRPArea() *requests.MRPArea {
 }
 
 func (sdc *SDC) ConvertToProcurement() *requests.Procurement {
-    dataProduct := sdc.Product
+	dataProduct := sdc.Product
 	dataPlant := sdc.Product.Plant
-    data := sdc.Product.Plant.Procurement
+	data := sdc.Product.Plant.Procurement
 	return &requests.Procurement{
 		Product:                     dataProduct.Product,
 		Plant:                       dataPlant.Plant,
@@ -98,9 +99,9 @@ func (sdc *SDC) ConvertToProcurement() *requests.Procurement {
 }
 
 func (sdc *SDC) ConvertToWorkScheduling() *requests.WorkScheduling {
-    dataProduct := sdc.Product
+	dataProduct := sdc.Product
 	dataPlant := sdc.Product.Plant
-    data := sdc.Product.Plant.WorkScheduling
+	data := sdc.Product.Plant.WorkScheduling
 	return &requests.WorkScheduling{
 		Product:                       dataProduct.Product,
 		Plant:                         dataPlant.Plant,
@@ -115,9 +116,9 @@ func (sdc *SDC) ConvertToWorkScheduling() *requests.WorkScheduling {
 }
 
 func (sdc *SDC) ConvertToSalesPlant() *requests.SalesPlant {
-    dataProduct := sdc.Product
+	dataProduct := sdc.Product
 	dataPlant := sdc.Product.Plant
-    data := sdc.Product.Plant.SalesPlant
+	data := sdc.Product.Plant.SalesPlant
 	return &requests.SalesPlant{
 		Product:               dataProduct.Product,
 		Plant:                 dataPlant.Plant,
@@ -127,7 +128,7 @@ func (sdc *SDC) ConvertToSalesPlant() *requests.SalesPlant {
 }
 
 func (sdc *SDC) ConvertToAccounting() *requests.Accounting {
-    dataProduct := sdc.Product
+	dataProduct := sdc.Product
 	data := sdc.Product.Accounting
 	return &requests.Accounting{
 		Product:             dataProduct.Product,
@@ -143,7 +144,7 @@ func (sdc *SDC) ConvertToAccounting() *requests.Accounting {
 }
 
 func (sdc *SDC) ConvertToSalesOrganization() *requests.SalesOrganization {
-    dataProduct := sdc.Product
+	dataProduct := sdc.Product
 	data := sdc.Product.SalesOrganization
 	return &requests.SalesOrganization{
 		Product:                        dataProduct.Product,
@@ -167,7 +168,7 @@ func (sdc *SDC) ConvertToSalesOrganization() *requests.SalesOrganization {
 }
 
 func (sdc *SDC) ConvertToSalesTax() *requests.SalesTax {
-    dataProduct := sdc.Product
+	dataProduct := sdc.Product
 	data := sdc.Product.SalesTax
 	return &requests.SalesTax{
 		Product:           dataProduct.Product,
@@ -178,7 +179,7 @@ func (sdc *SDC) ConvertToSalesTax() *requests.SalesTax {
 }
 
 func (sdc *SDC) ConvertToProductDesc() *requests.ProductDesc {
-    dataProduct := sdc.Product
+	dataProduct := sdc.Product
 	data := sdc.Product.ProductDescription
 	return &requests.ProductDesc{
 		Product:            dataProduct.Product,
@@ -188,9 +189,9 @@ func (sdc *SDC) ConvertToProductDesc() *requests.ProductDesc {
 }
 
 func (sdc *SDC) ConvertToQuality() *requests.Quality {
-    dataProduct := sdc.Product
+	dataProduct := sdc.Product
 	dataPlant := sdc.Product.Plant
-    data := sdc.Product.Plant.Quality
+	data := sdc.Product.Plant.Quality
 	return &requests.Quality{
 		Product:                        dataProduct.Product,
 		Plant:                          dataPlant.Plant,

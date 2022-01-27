@@ -19,7 +19,7 @@ type General struct {
 		NetWeight           string `json:"NetWeight"`
 		ChangeNumber        string `json:"ChangeNumber"`
 		ToProductDesc       struct {
-			ToProductDescResults []ProductDesc `json:"results"`
+			ToProductDescResults []ToProductDesc `json:"results"`
 		} `json:"to_Description"`
 	} `json:"d"`
 }

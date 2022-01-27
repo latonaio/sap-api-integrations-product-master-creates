@@ -9,6 +9,7 @@ type General struct {
 	ProductGroup        *string `json:"ProductGroup"`
 	BaseUnit            *string `json:"BaseUnit"`
 	Division            *string `json:"Division"`
+	NetWeight           *string `json:"NetWeight"`
 	ValidityStartDate   *string `json:"ValidityStartDate"`
 	SizeOrDimensionText *string `json:"SizeOrDimensionText"`
 	ProductStandardID   *string `json:"ProductStandardID"`

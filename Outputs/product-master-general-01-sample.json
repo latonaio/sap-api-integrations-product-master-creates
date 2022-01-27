@@ -3,21 +3,21 @@
 	"function": "sap-api-integrations-product-master-creates/SAP_API_Caller.(*SAPAPICaller).General",
 	"level": "INFO",
 	"message": {
-		"Product": "52",
+		"Product": "75",
 		"IndustrySector": "M",
 		"ProductType": "FERT",
 		"BaseUnit": "PC",
-		"ValidityStartDate": "",
+		"ValidityStartDate": "2022-01-25T09:00:00+09:00",
 		"ProductGroup": "01",
 		"Division": "",
-		"GrossWeight": "0.000",
-		"WeightUnit": "",
+		"GrossWeight": "1.000",
+		"WeightUnit": "KG",
 		"SizeOrDimensionText": "",
 		"ProductStandardID": "",
 		"CreationDate": "",
 		"LastChangeDate": "",
 		"IsMarkedForDeletion": false,
-		"NetWeight": "0.000",
+		"NetWeight": "1.000",
 		"ChangeNumber": "",
 		"to_Description": {
 			"Product": "",
@@ -25,5 +25,5 @@
 			"ProductDescription": "test"
 		}
 	},
-	"time": "2022-01-20T16:37:40.635494424+09:00"
+	"time": "2022-01-27T17:47:48+09:00"
 }

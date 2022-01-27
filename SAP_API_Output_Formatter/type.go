@@ -30,7 +30,7 @@ type General struct {
 	IsMarkedForDeletion bool                    `json:"IsMarkedForDeletion"`
 	NetWeight           string                  `json:"NetWeight"`
 	ChangeNumber        string                  `json:"ChangeNumber"`
-	ToProductDesc       responses.ProductDesc   `json:"to_Description"`
+	ToProductDesc       responses.ToProductDesc `json:"to_Description"`
 }
 
 type Plant struct {

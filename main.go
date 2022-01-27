@@ -5,8 +5,9 @@ import (
 	sap_api_input_reader "sap-api-integrations-product-master-creates/SAP_API_Input_Reader"
 	"sap-api-integrations-product-master-creates/config"
 
-	"github.com/latonaio/golang-logging-library/logger"
+	"github.com/latonaio/golang-logging-library-for-sap/logger"
 	sap_api_post_header_setup "github.com/latonaio/sap-api-post-header-setup"
+	sap_api_time_value_converter "github.com/latonaio/sap-api-time-value-converter"
 )
 
 func main() {
@@ -20,18 +21,20 @@ func main() {
 		pc,
 		l,
 	)
-	inputSDC          := fr.ReadSDC("./Inputs/SDC_Product_Master_General_sample.json")
-	accepter          := getAccepter(inputSDC)
-	general           := inputSDC.ConvertToGeneral()
-	plant             := inputSDC.ConvertToPlant()
-	mrpArea           := inputSDC.ConvertToMRPArea()
-	procurement       := inputSDC.ConvertToProcurement()
-	workScheduling    := inputSDC.ConvertToWorkScheduling()
-	salesPlant        := inputSDC.ConvertToSalesPlant()
-	accounting        := inputSDC.ConvertToAccounting()
+	inputSDC := fr.ReadSDC("./Inputs/SDC_Product_Master_General_sample.json")
+	sap_api_time_value_converter.ChangeTimeFormatToSAPFormatStruct(&inputSDC)
+
+	accepter := getAccepter(inputSDC)
+	general := inputSDC.ConvertToGeneral()
+	plant := inputSDC.ConvertToPlant()
+	mrpArea := inputSDC.ConvertToMRPArea()
+	procurement := inputSDC.ConvertToProcurement()
+	workScheduling := inputSDC.ConvertToWorkScheduling()
+	salesPlant := inputSDC.ConvertToSalesPlant()
+	accounting := inputSDC.ConvertToAccounting()
 	salesOrganization := inputSDC.ConvertToSalesOrganization()
-	productDesc       := inputSDC.ConvertToProductDesc()
-	quality           := inputSDC.ConvertToQuality()
+	productDesc := inputSDC.ConvertToProductDesc()
+	quality := inputSDC.ConvertToQuality()
 
 	caller.AsyncPostProductMaster(
 		general,
