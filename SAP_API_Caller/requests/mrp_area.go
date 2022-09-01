@@ -4,23 +4,23 @@ type MRPArea struct {
 	Product                       string  `json:"Material"`
 	Plant                         string  `json:"Plant"`
 	MRPArea                       string  `json:"MRPArea"`
-	MRPType                       *string `json:"MRPType"`
-	MRPResponsible                *string `json:"MRPResponsible"`
-	MRPGroup                      *string `json:"MRPGroup"`
-	ReorderThresholdQuantity      *string `json:"ReorderThresholdQuantity"`
-	PlanningTimeFence             *string `json:"PlanningTimeFence"`
-	LotSizingProcedure            *string `json:"LotSizingProcedure"`
-	LotSizeRoundingQuantity       *string `json:"LotSizeRoundingQuantity"`
-	MinimumLotSizeQuantity        *string `json:"MinimumLotSizeQuantity"`
-	MaximumLotSizeQuantity        *string `json:"MaximumLotSizeQuantity"`
-	MaximumStockQuantity          *string `json:"MaximumStockQuantity"`
-	ProcurementSubType            *string `json:"ProcurementSubType"`
-	DfltStorageLocationExtProcmt  *string `json:"DfltStorageLocationExtProcmt"`
-	MRPPlanningCalendar           *string `json:"MRPPlanningCalendar"`
-	SafetyStockQuantity           *string `json:"SafetyStockQuantity"`
-	SafetyDuration                *string `json:"SafetyDuration"`
-	FixedLotSizeQuantity          *string `json:"FixedLotSizeQuantity"`
-	PlannedDeliveryDurationInDays *string `json:"PlannedDeliveryDurationInDays"`
-	StorageLocation               *string `json:"StorageLocation"`
-	IsMarkedForDeletion           *bool   `json:"IsMarkedForDeletion"`
+	MRPType                       *string `json:"MRPType,omitempty"`
+	MRPResponsible                *string `json:"MRPResponsible,omitempty"`
+	MRPGroup                      *string `json:"MRPGroup,omitempty"`
+	ReorderThresholdQuantity      *string `json:"ReorderThresholdQuantity,omitempty"`
+	PlanningTimeFence             *string `json:"PlanningTimeFence,omitempty"`
+	LotSizingProcedure            *string `json:"LotSizingProcedure,omitempty"`
+	LotSizeRoundingQuantity       *string `json:"LotSizeRoundingQuantity,omitempty"`
+	MinimumLotSizeQuantity        *string `json:"MinimumLotSizeQuantity,omitempty"`
+	MaximumLotSizeQuantity        *string `json:"MaximumLotSizeQuantity,omitempty"`
+	MaximumStockQuantity          *string `json:"MaximumStockQuantity,omitempty"`
+	ProcurementSubType            *string `json:"ProcurementSubType,omitempty"`
+	DfltStorageLocationExtProcmt  *string `json:"DfltStorageLocationExtProcmt,omitempty"`
+	MRPPlanningCalendar           *string `json:"MRPPlanningCalendar,omitempty"`
+	SafetyStockQuantity           *string `json:"SafetyStockQuantity,omitempty"`
+	SafetyDuration                *string `json:"SafetyDuration,omitempty"`
+	FixedLotSizeQuantity          *string `json:"FixedLotSizeQuantity,omitempty"`
+	PlannedDeliveryDurationInDays *string `json:"PlannedDeliveryDurationInDays,omitempty"`
+	StorageLocation               *string `json:"StorageLocation,omitempty"`
+	IsMarkedForDeletion           *bool   `json:"IsMarkedForDeletion,omitempty"`
 }
