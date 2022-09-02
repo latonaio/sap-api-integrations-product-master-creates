@@ -120,7 +120,7 @@
 			"TaxClassification": ""
 		}
 	},
-	"api_schema": "SAPProductMasterCreate",
+	"api_schema": "SAPProductMasterCreates",
 	"accepter": ["General"],
 	"material_code": "",
 	"deleted": false
