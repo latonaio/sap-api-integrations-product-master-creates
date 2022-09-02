@@ -120,7 +120,7 @@
 			"TaxClassification": ""
 		}
 	},
-	"api_schema": "sap.s4.beh.product.v1.Product.Created.v1",
+	"api_schema": "SAPProductMasterCreates",
 	"accepter": ["Plant"],
 	"material_code": "51",
 	"deleted": false
