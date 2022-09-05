@@ -9,4 +9,3 @@ require (
 	golang.org/x/xerrors v0.0.0-20220517211312-f3a8303e98df
 )
 
-replace github.com/latonaio/sap-api-post-header-setup v1.0.0 => ../sap-api-post-header-setup
