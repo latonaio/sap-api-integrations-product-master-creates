@@ -11,7 +11,7 @@ type SAP struct {
 
 func newSAP() *SAP {
 	return &SAP{
-		baseURL:         getEnv("SAP_API_BASE_URL", "http://XXX.XX.XX.XXX:XXXX/sap/opu/odata/sap/"),
+		baseURL:         getEnv("SAP_API_BASE_URL", "http://XXX.XX.XX.XXX:8080/sap/opu/odata/sap/"),
 		user:            getEnv("SAP_USER", ""),
 		pass:            getEnv("SAP_PASS", ""),
 		tokenRefreshURL: getEnv("SAP_TOKEN_REFRESH_URL", ""),

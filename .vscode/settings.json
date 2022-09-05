@@ -1,11 +1,5 @@
 {
     "cSpell.words": [
         "latonaio"
-    ],
-    "workbench.colorCustomizations": {
-        "activityBar.background": "#131313",
-        "titleBar.activeBackground": "#b1f100",
-        "titleBar.activeForeground": "#ff00ff"
-    },
-    "workbench.colorTheme": "Default Dark+"
+    ]
 }
