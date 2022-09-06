@@ -1,29 +1,127 @@
 {
-	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-product-master-creates/SAP_API_Caller/caller.go#L113",
-	"function": "sap-api-integrations-product-master-creates/SAP_API_Caller.(*SAPAPICaller).General",
-	"level": "INFO",
-	"message": {
-		"Product": "21",
+	"connection_key": "response",
+	"result": true,
+	"redis_key": "abcdefg",
+	"filepath": "/var/lib/aion/Data/rededge_sdc/abcdef.json",
+	"material": {
+		"Material": "21",
 		"IndustrySector": "M",
 		"ProductType": "FERT",
 		"BaseUnit": "PC",
-		"ValidityStartDate": "2022-01-25T09:00:00+09:00",
+		"ValidityStartDate": "2022-01-25T18:30:08+09:00",
 		"ProductGroup": "01",
-		"Division": "",
-		"GrossWeight": "1.000",
+		"Division": null,
+		"GrossWeight": "2",
 		"WeightUnit": "KG",
-		"SizeOrDimensionText": "",
-		"ProductStandardID": "",
-		"CreationDate": "",
-		"LastChangeDate": "",
-		"IsMarkedForDeletion": false,
-		"NetWeight": "1.000",
-		"ChangeNumber": "",
-		"to_Description": {
-			"Product": "",
+		"SizeOrDimensionText": null,
+		"ProductStandardID": null,
+		"CreationDate": null,
+		"LastChangeDate": null,
+		"IsMarkedForDeletion": null,
+		"NetWeight": "1",
+		"ChangeNumber": null,
+		"Plant": {
+			"Plant": "",
+			"PurchasingGroup": "",
+			"ProductionInvtryManagedLoc": "",
+			"AvailabilityCheckType": "",
+			"ProfitCenter": "",
+			"GoodsReceiptDuration": "",
+			"MRPType": "",
+			"MRPResponsible": "",
+			"MinimumLotSizeQuantity": "",
+			"MaximumLotSizeQuantity": "",
+			"FixedLotSizeQuantity": "",
+			"IsBatchManagementRequired": null,
+			"ProcurementType": "",
+			"IsInternalBatchManaged": null,
+			"GoodsIssueUnit": "",
+			"MaterialFreightGroup": "",
+			"ProductLogisticsHandlingGroup": "",
+			"IsMarkedForDeletion": null,
+			"MRPArea": {
+				"MRPArea": "",
+				"MRPType": "",
+				"MRPResponsible": "",
+				"MRPGroup": "",
+				"ReorderThresholdQuantity": "",
+				"PlanningTimeFence": "",
+				"LotSizingProcedure": "",
+				"LotSizeRoundingQuantity": "",
+				"MinimumLotSizeQuantity": "",
+				"MaximumLotSizeQuantity": "",
+				"MaximumStockQuantity": "",
+				"ProcurementSubType": "",
+				"DfltStorageLocationExtProcmt": "",
+				"MRPPlanningCalendar": "",
+				"SafetyStockQuantity": "",
+				"SafetyDuration": "",
+				"FixedLotSizeQuantity": "",
+				"PlannedDeliveryDurationInDays": "",
+				"StorageLocation": "",
+				"IsMarkedForDeletion": false
+			},
+			"Procurement": {
+				"IsAutoPurOrdCreationAllowed": true,
+				"IsSourceListRequired": true
+			},
+			"Sales_Plant": {
+				"LoadingGroup": "",
+				"AvailabilityCheckType": ""
+			},
+			"Work_Scheduling": {
+				"ProductionInvtryManagedLoc": "",
+				"ProductProcessingTime": "",
+				"ProductionSupervisor": "",
+				"ProductProductionQuantityUnit": "",
+				"ProdnOrderIsBatchRequired": "",
+				"MatlCompIsMarkedForBackflush": "",
+				"ProductionSchedulingProfile": ""
+			},
+			"Quality": {
+				"MaximumStoragePeriod": "",
+				"QualityMgmtCtrlKey": "",
+				"MatlQualityAuthorizationGroup": "",
+				"HasPostToInspectionStock": null,
+				"InspLotDocumentationIsRequired": null,
+				"SuplrQualityManagementSystem": "",
+				"RecrrgInspIntervalTimeInDays": "",
+				"ProductQualityCertificateType": ""
+			}
+		},
+		"Sales_Organization": {
+			"ProductSalesOrg": "",
+			"ProductDistributionChnl": "",
+			"SupplyingPlant": "",
+			"PriceSpecificationProductGroup": "",
+			"AccountDetnProductGroup": "",
+			"ItemCategoryGroup": "",
+			"SalesMeasureUnit": "",
+			"ProductHierarchy": "",
+			"IsMarkedForDeletion": null
+		},
+		"ValuationArea": {
+			"ValuationArea": "",
+			"ValuationClass": "",
+			"StandardPrice": "",
+			"PriceUnitQty": "",
+			"MovingAveragePrice": "",
+			"PriceLastChangeDate": "",
+			"PlannedPrice": "",
+			"IsMarkedForDeletion": null
+		},
+		"ProductDescription": {
 			"Language": "EN",
 			"ProductDescription": "test"
+		},
+		"SalesTax": {
+			"Country": "",
+			"TaxCategory": "",
+			"TaxClassification": ""
 		}
 	},
-	"time": "2022-09-05T17:23:45+09:00"
+	"api_schema": "SAPProductMasterCreates",
+	"accepter": ["General"],
+	"material_code": "",
+	"deleted": false
 }

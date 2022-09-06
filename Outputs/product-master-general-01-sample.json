@@ -1,9 +1,9 @@
 {
-	"cursor": "/home/ampamman/go/src/sap-api-integrations-product-master-creates/SAP_API_Caller/caller.go#L113",
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-product-master-creates/SAP_API_Caller/caller.go#L113",
 	"function": "sap-api-integrations-product-master-creates/SAP_API_Caller.(*SAPAPICaller).General",
 	"level": "INFO",
 	"message": {
-		"Product": "75",
+		"Product": "34",
 		"IndustrySector": "M",
 		"ProductType": "FERT",
 		"BaseUnit": "PC",
@@ -25,5 +25,5 @@
 			"ProductDescription": "test"
 		}
 	},
-	"time": "2022-01-27T17:47:48+09:00"
+	"time": "2022-09-06T18:50:30+09:00"
 }
