@@ -10,18 +10,18 @@ import (
 	"sync"
 
 	"github.com/latonaio/golang-logging-library-for-sap/logger"
-	sap_api_post_header_setup "github.com/latonaio/sap-api-post-header-setup"
+	sap_api_request_client_header_setup "github.com/latonaio/sap-api-request-client-header-setup"
 	"golang.org/x/xerrors"
 )
 
 type SAPAPICaller struct {
 	baseURL         string
 	sapClientNumber string
-	postClient      *sap_api_post_header_setup.SAPPostClient
+	postClient      *sap_api_request_client_header_setup.SAPRequestClient
 	log             *logger.Logger
 }
 
-func NewSAPAPICaller(baseUrl, sapClientNumber string, postClient *sap_api_post_header_setup.SAPPostClient, l *logger.Logger) *SAPAPICaller {
+func NewSAPAPICaller(baseUrl, sapClientNumber string, postClient *sap_api_request_client_header_setup.SAPRequestClient, l *logger.Logger) *SAPAPICaller {
 	return &SAPAPICaller{
 		baseURL:         baseUrl,
 		postClient:      postClient,
@@ -120,7 +120,7 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementGeneral(api string, general *
 	}
 	url := strings.Join([]string{c.baseURL, "API_PRODUCT_SRV", api}, "/")
 	params := c.addQuerySAPClient(map[string]string{})
-	resp, err := c.postClient.POST(url, params, string(body))
+	resp, err := c.postClient.Request("POST", url, params, string(body))
 	if err != nil {
 		return nil, xerrors.Errorf("API request error: %w", err)
 	}
@@ -153,7 +153,7 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementPlant(api string, plant *requ
 	}
 	url := strings.Join([]string{c.baseURL, "API_PRODUCT_SRV", api}, "/")
 	params := c.addQuerySAPClient(map[string]string{})
-	resp, err := c.postClient.POST(url, params, string(body))
+	resp, err := c.postClient.Request("POST", url, params, string(body))
 	if err != nil {
 		return nil, xerrors.Errorf("API request error: %w", err)
 	}
@@ -185,7 +185,7 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementMRPArea(api string, mrpArea *
 	}
 	url := strings.Join([]string{c.baseURL, "API_PRODUCT_SRV", api}, "/")
 	params := c.addQuerySAPClient(map[string]string{})
-	resp, err := c.postClient.POST(url, params, string(body))
+	resp, err := c.postClient.Request("POST", url, params, string(body))
 	if err != nil {
 		return nil, xerrors.Errorf("API request error: %w", err)
 	}
@@ -217,7 +217,7 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementProcurement(api string, procu
 	}
 	url := strings.Join([]string{c.baseURL, "API_PRODUCT_SRV", api}, "/")
 	params := c.addQuerySAPClient(map[string]string{})
-	resp, err := c.postClient.POST(url, params, string(body))
+	resp, err := c.postClient.Request("POST", url, params, string(body))
 	if err != nil {
 		return nil, xerrors.Errorf("API request error: %w", err)
 	}
@@ -249,7 +249,7 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementWorkScheduling(api string, wo
 	}
 	url := strings.Join([]string{c.baseURL, "API_PRODUCT_SRV", api}, "/")
 	params := c.addQuerySAPClient(map[string]string{})
-	resp, err := c.postClient.POST(url, params, string(body))
+	resp, err := c.postClient.Request("POST", url, params, string(body))
 	if err != nil {
 		return nil, xerrors.Errorf("API request error: %w", err)
 	}
@@ -281,7 +281,7 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementSalesPlant(api string, salesP
 	}
 	url := strings.Join([]string{c.baseURL, "API_PRODUCT_SRV", api}, "/")
 	params := c.addQuerySAPClient(map[string]string{})
-	resp, err := c.postClient.POST(url, params, string(body))
+	resp, err := c.postClient.Request("POST", url, params, string(body))
 	if err != nil {
 		return nil, xerrors.Errorf("API request error: %w", err)
 	}
@@ -313,7 +313,7 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementAccounting(api string, accoun
 	}
 	url := strings.Join([]string{c.baseURL, "API_PRODUCT_SRV", api}, "/")
 	params := c.addQuerySAPClient(map[string]string{})
-	resp, err := c.postClient.POST(url, params, string(body))
+	resp, err := c.postClient.Request("POST", url, params, string(body))
 	if err != nil {
 		return nil, xerrors.Errorf("API request error: %w", err)
 	}
@@ -345,7 +345,7 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementSalesOrganization(api string,
 	}
 	url := strings.Join([]string{c.baseURL, "API_PRODUCT_SRV", api}, "/")
 	params := c.addQuerySAPClient(map[string]string{})
-	resp, err := c.postClient.POST(url, params, string(body))
+	resp, err := c.postClient.Request("POST", url, params, string(body))
 	if err != nil {
 		return nil, xerrors.Errorf("API request error: %w", err)
 	}
@@ -377,7 +377,7 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementProductDesc(api string, produ
 	}
 	url := strings.Join([]string{c.baseURL, "API_PRODUCT_SRV", api}, "/")
 	params := c.addQuerySAPClient(map[string]string{})
-	resp, err := c.postClient.POST(url, params, string(body))
+	resp, err := c.postClient.Request("POST", url, params, string(body))
 	if err != nil {
 		return nil, xerrors.Errorf("API request error: %w", err)
 	}
@@ -409,7 +409,7 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementQuality(api string, quality *
 	}
 	url := strings.Join([]string{c.baseURL, "API_PRODUCT_SRV", api}, "/")
 	params := c.addQuerySAPClient(map[string]string{})
-	resp, err := c.postClient.POST(url, params, string(body))
+	resp, err := c.postClient.Request("POST", url, params, string(body))
 	if err != nil {
 		return nil, xerrors.Errorf("API request error: %w", err)
 	}
