@@ -1,9 +1,9 @@
 {
-	"cursor": "/home/ampamman/go/src/sap-api-integrations-product-master-creates/SAP_API_Caller/caller.go#L338",
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-product-master-creates/SAP_API_Caller/caller.go#L338",
 	"function": "sap-api-integrations-product-master-creates/SAP_API_Caller.(*SAPAPICaller).SalesOrganization",
 	"level": "INFO",
 	"message": {
-		"Product": "51",
+		"Product": "21",
 		"ProductSalesOrg": "0001",
 		"ProductDistributionChnl": "01",
 		"SupplyingPlant": "",
@@ -14,5 +14,5 @@
 		"ProductHierarchy": "",
 		"IsMarkedForDeletion": false
 	},
-	"time": "2022-01-20T13:47:51.021831193+09:00"
+	"time": "2022-09-07T16:05:17+09:00"
 }

@@ -4,7 +4,7 @@
 	"redis_key": "abcdefg",
 	"filepath": "/var/lib/aion/Data/rededge_sdc/abcdef.json",
 	"material": {
-		"Material": "51",
+		"Material": "21",
 		"IndustrySector": "",
 		"ProductType": "",
 		"BaseUnit": "",
@@ -122,6 +122,6 @@
 	},
 	"api_schema": "SAPProductMasterCreates",
 	"accepter": ["Accounting"],
-	"material_code": "51",
+	"material_code": "21",
 	"deleted": false
 }
