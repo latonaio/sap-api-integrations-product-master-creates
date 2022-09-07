@@ -1,7 +1,7 @@
 package requests
 
 type MRPArea struct {
-	Product                       string  `json:"Material"`
+	Product                       string  `json:"Product"`
 	Plant                         string  `json:"Plant"`
 	MRPArea                       string  `json:"MRPArea"`
 	MRPType                       *string `json:"MRPType,omitempty"`

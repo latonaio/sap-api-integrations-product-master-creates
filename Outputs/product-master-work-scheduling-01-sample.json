@@ -1,9 +1,9 @@
 {
-	"cursor": "/home/ampamman/go/src/sap-api-integrations-product-master-creates/SAP_API_Caller/caller.go#L242",
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-product-master-creates/SAP_API_Caller/caller.go#L242",
 	"function": "sap-api-integrations-product-master-creates/SAP_API_Caller.(*SAPAPICaller).WorkScheduling",
 	"level": "INFO",
 	"message": {
-		"Product": "51",
+		"Product": "21",
 		"Plant": "0001",
 		"ProductionInvtryManagedLoc": "0001",
 		"ProductProcessingTime": "0.00",
@@ -13,5 +13,5 @@
 		"MatlCompIsMarkedForBackflush": "",
 		"ProductionSchedulingProfile": ""
 	},
-	"time": "2022-01-20T13:46:15.378234581+09:00"
+	"time": "2022-09-07T09:39:24+09:00"
 }
