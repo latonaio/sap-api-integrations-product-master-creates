@@ -1,12 +1,12 @@
 {
-	"cursor": "/home/ampamman/go/src/sap-api-integrations-product-master-creates/SAP_API_Caller/caller.go#L210",
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-product-master-creates/SAP_API_Caller/caller.go#L210",
 	"function": "sap-api-integrations-product-master-creates/SAP_API_Caller.(*SAPAPICaller).Procurement",
 	"level": "INFO",
 	"message": {
-		"Product": "51",
+		"Product": "21",
 		"Plant": "0001",
 		"IsAutoPurOrdCreationAllowed": true,
 		"IsSourceListRequired": true
 	},
-	"time": "2022-01-20T13:49:30.876853043+09:00"
+	"time": "2022-09-07T09:21:24+09:00"
 }

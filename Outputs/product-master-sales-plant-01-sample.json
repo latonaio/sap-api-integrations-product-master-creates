@@ -1,12 +1,12 @@
 {
-	"cursor": "/home/ampamman/go/src/sap-api-integrations-product-master-creates/SAP_API_Caller/caller.go#L274",
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-product-master-creates/SAP_API_Caller/caller.go#L274",
 	"function": "sap-api-integrations-product-master-creates/SAP_API_Caller.(*SAPAPICaller).SalesPlant",
 	"level": "INFO",
 	"message": {
-		"Product": "51",
+		"Product": "21",
 		"Plant": "0001",
 		"LoadingGroup": "0001",
 		"AvailabilityCheckType": "02"
 	},
-	"time": "2022-01-20T13:47:15.563087131+09:00"
+	"time": "2022-09-07T09:29:41+09:00"
 }

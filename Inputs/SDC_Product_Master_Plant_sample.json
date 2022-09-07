@@ -122,6 +122,6 @@
 	},
 	"api_schema": "SAPProductMasterCreates",
 	"accepter": ["Plant"],
-	"material_code": "51",
+	"material_code": "21",
 	"deleted": false
 }
