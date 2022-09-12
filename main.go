@@ -1,14 +1,11 @@
 package main
 
 import (
-	"fmt"
-	sap_api_caller "sap-api-integrations-product-master-creates-rmq-kube/SAP_API_Caller"
-	"sap-api-integrations-product-master-creates-rmq-kube/SAP_API_Caller/requests"
-	sap_api_input_reader "sap-api-integrations-product-master-creates-rmq-kube/SAP_API_Input_Reader"
-	"sap-api-integrations-product-master-creates-rmq-kube/config"
+	sap_api_caller "sap-api-integrations-product-master-creates/SAP_API_Caller"
+	sap_api_input_reader "sap-api-integrations-product-master-creates/SAP_API_Input_Reader"
+	"sap-api-integrations-product-master-creates/config"
 
 	"github.com/latonaio/golang-logging-library-for-sap/logger"
-	rabbitmq "github.com/latonaio/rabbitmq-golang-client"
 	sap_api_request_client_header_setup "github.com/latonaio/sap-api-request-client-header-setup"
 	sap_api_time_value_converter "github.com/latonaio/sap-api-time-value-converter"
 )
@@ -16,82 +13,45 @@ import (
 func main() {
 	l := logger.NewLogger()
 	conf := config.NewConf()
+	fr := sap_api_input_reader.NewFileReader()
 	pc := sap_api_request_client_header_setup.NewSAPRequestClientWithOption(conf.SAP)
-	rmq, err := rabbitmq.NewRabbitmqClient(conf.RMQ.URL(), conf.RMQ.QueueFrom(), conf.RMQ.QueueTo())
-	if err != nil {
-		l.Fatal(err.Error())
-	}
-	defer rmq.Close()
 	caller := sap_api_caller.NewSAPAPICaller(
 		conf.SAP.BaseURL(),
 		"100",
 		pc,
-		conf.RMQ.QueueTo(),
-		rmq,
 		l,
 	)
+	inputSDC := fr.ReadSDC("./Inputs/SDC_Product_Master_Accounting_sample.json")
+	sap_api_time_value_converter.ChangeTimeFormatToSAPFormatStruct(&inputSDC)
 
-	iter, err := rmq.Iterator()
-	if err != nil {
-		l.Fatal(err.Error())
-	}
-	defer rmq.Stop()
+	accepter := getAccepter(inputSDC)
+	general := inputSDC.ConvertToGeneral()
+	plant := inputSDC.ConvertToPlant()
+	mrpArea := inputSDC.ConvertToMRPArea()
+	procurement := inputSDC.ConvertToProcurement()
+	workScheduling := inputSDC.ConvertToWorkScheduling()
+	salesPlant := inputSDC.ConvertToSalesPlant()
+	accounting := inputSDC.ConvertToAccounting()
+	salesOrganization := inputSDC.ConvertToSalesOrganization()
+	productDesc := inputSDC.ConvertToProductDesc()
+	quality := inputSDC.ConvertToQuality()
 
-	for msg := range iter {
-		err = callProcess(caller, msg)
-		if err != nil {
-			msg.Fail()
-			l.Error(err)
-			continue
-		}
-		msg.Success()
-	}
+	caller.AsyncPostProductMaster(
+		general,
+		plant,
+		mrpArea,
+		procurement,
+		workScheduling,
+		salesPlant,
+		accounting,
+		salesOrganization,
+		productDesc,
+		quality,
+		accepter,
+	)
 }
 
-func callProcess(caller *sap_api_caller.SAPAPICaller, msg rabbitmq.RabbitmqMessage) (err error) {
-	defer func() {
-		if e := recover(); e != nil {
-			err = fmt.Errorf("error occurred: %w", e)
-			return
-		}
-	}()
-	product, plant, mrpArea, valuationArea, productSalesOrg, productDistributionChnl, language, productDescription, country, taxCategory := extractData(msg.Data())
-	accepter := getAccepter(msg.Data())
-	caller.AsyncPostProductMaster(product, plant, mrpArea, valuationArea, productSalesOrg, productDistributionChnl, language, productDescription, country, taxCategory, accepter)
-	return nil
-}
-
-func extractData(data map[string]interface{}) (
-	general *requests.General,
-	plant *requests.Plant,
-	mrpArea *requests.MRPArea,
-	procurement *requests.Procurement,
-	workScheduling *requests.WorkScheduling,
-	salesPlant *requests.SalesPlant,
-	accounting *requests.Accounting,
-	salesOrganization *requests.SalesOrganization,
-	productDesc *requests.ProductDesc,
-	quality *requests.Quality,
-) {
-
-	sdc := sap_api_input_reader.ConvertToSDC(data)
-	sap_api_time_value_converter.ChangeTimeFormatToSAPFormatStruct(&sdc)
-
-	general = sdc.ConvertToGeneral()
-	plant = sdc.ConvertToPlant()
-	mrpArea = sdc.ConvertToMRPArea()
-	procurement = sdc.ConvertToProcurement()
-	workScheduling = sdc.ConvertToWorkScheduling()
-	salesPlant = sdc.ConvertToSalesPlant()
-	accounting = sdc.ConvertToAccounting()
-	salesOrganization = sdc.ConvertToSalesOrganization()
-	productDesc = sdc.ConvertToProductDesc()
-	quality = sdc.ConvertToQuality()
-	return
-}
-
-func getAccepter(data map[string]interface{}) []string {
-	sdc := sap_api_input_reader.ConvertToSDC(data)
+func getAccepter(sdc sap_api_input_reader.SDC) []string {
 	accepter := sdc.Accepter
 	if len(sdc.Accepter) == 0 {
 		accepter = []string{"All"}

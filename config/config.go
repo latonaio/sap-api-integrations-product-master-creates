@@ -8,13 +8,11 @@ import (
 
 type Conf struct {
 	SAP *SAP
-	RMQ *RMQ
 }
 
 func NewConf() *Conf {
 	return &Conf{
 		SAP: newSAP(),
-		RMQ: newRMQ(),
 	}
 }
 
