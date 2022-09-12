@@ -1,6 +1,6 @@
 package sap_api_output_formatter
 
-import "sap-api-integrations-product-master-creates/SAP_API_Caller/responses"
+import "sap-api-integrations-product-master-creates-rmq-kube/SAP_API_Caller/responses"
 
 type ProductMaster struct {
 	ConnectionKey string `json:"connection_key"`

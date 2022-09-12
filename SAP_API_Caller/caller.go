@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
-	"sap-api-integrations-product-master-creates/SAP_API_Caller/requests"
-	sap_api_output_formatter "sap-api-integrations-product-master-creates/SAP_API_Output_Formatter"
+	"sap-api-integrations-product-master-creates-rmq-kube/SAP_API_Caller/requests"
+	sap_api_output_formatter "sap-api-integrations-product-master-creates-rmq-kube/SAP_API_Output_Formatter"
 	"strings"
 	"sync"
 
@@ -14,18 +14,26 @@ import (
 	"golang.org/x/xerrors"
 )
 
+type RMQOutputter interface {
+	Send(sendQueue string, payload map[string]interface{}) error
+}
+
 type SAPAPICaller struct {
 	baseURL         string
 	sapClientNumber string
-	requestClient      *sap_api_request_client_header_setup.SAPRequestClient
+	requestClient   *sap_api_request_client_header_setup.SAPRequestClient
+	outputQueues    []string
+	outputter       RMQOutputter
 	log             *logger.Logger
 }
 
-func NewSAPAPICaller(baseUrl, sapClientNumber string, requestClient *sap_api_request_client_header_setup.SAPRequestClient, l *logger.Logger) *SAPAPICaller {
+func NewSAPAPICaller(baseUrl, sapClientNumber string, requestClient *sap_api_request_client_header_setup.SAPRequestClient, outputQueueTo []string, outputter RMQOutputter, l *logger.Logger) *SAPAPICaller {
 	return &SAPAPICaller{
 		baseURL:         baseUrl,
 		requestClient:   requestClient,
 		sapClientNumber: sapClientNumber,
+		outputQueues:    outputQueueTo,
+		outputter:       outputter,
 		log:             l,
 	}
 }
@@ -105,12 +113,17 @@ func (c *SAPAPICaller) AsyncPostProductMaster(
 }
 
 func (c *SAPAPICaller) General(general *requests.General) {
-	outputDataGeneral, err := c.callProductSrvAPIRequirementGeneral("A_Product", general)
+	generalData, err := c.callProductSrvAPIRequirementGeneral("A_Product", general)
 	if err != nil {
 		c.log.Error(err)
 		return
 	}
-	c.log.Info(outputDataGeneral)
+	err = c.outputter.Send(c.outputQueues[0], map[string]interface{}{"message": generalData, "function": "ProductMasterGeneral"})
+	if err != nil {
+		c.log.Error(err)
+		return
+	}
+	c.log.Info(generalData)
 }
 
 func (c *SAPAPICaller) callProductSrvAPIRequirementGeneral(api string, general *requests.General) (*sap_api_output_formatter.General, error) {
@@ -139,6 +152,11 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementGeneral(api string, general *
 
 func (c *SAPAPICaller) Plant(plant *requests.Plant) {
 	outputDataPlant, err := c.callProductSrvAPIRequirementPlant("A_ProductPlant", plant)
+	if err != nil {
+		c.log.Error(err)
+		return
+	}
+	err = c.outputter.Send(c.outputQueues[0], map[string]interface{}{"message": outputDataPlant, "function": "ProductMasterPlant"})
 	if err != nil {
 		c.log.Error(err)
 		return
@@ -175,6 +193,11 @@ func (c *SAPAPICaller) MRPArea(mrpArea *requests.MRPArea) {
 		c.log.Error(err)
 		return
 	}
+	err = c.outputter.Send(c.outputQueues[0], map[string]interface{}{"message": outputDataMRPArea, "function": "ProductMasterMRPArea"})
+	if err != nil {
+		c.log.Error(err)
+		return
+	}
 	c.log.Info(outputDataMRPArea)
 }
 
@@ -203,6 +226,11 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementMRPArea(api string, mrpArea *
 
 func (c *SAPAPICaller) Procurement(procurement *requests.Procurement) {
 	outputDataProcurement, err := c.callProductSrvAPIRequirementProcurement("A_ProductPlantProcurement", procurement)
+	if err != nil {
+		c.log.Error(err)
+		return
+	}
+	err = c.outputter.Send(c.outputQueues[0], map[string]interface{}{"message": outputDataProcurement, "function": "ProductMasterProcurement"})
 	if err != nil {
 		c.log.Error(err)
 		return
@@ -239,6 +267,11 @@ func (c *SAPAPICaller) WorkScheduling(workScheduling *requests.WorkScheduling) {
 		c.log.Error(err)
 		return
 	}
+	err = c.outputter.Send(c.outputQueues[0], map[string]interface{}{"message": outputDataWorkScheduling, "function": "ProductMasterWorkScheduling"})
+	if err != nil {
+		c.log.Error(err)
+		return
+	}
 	c.log.Info(outputDataWorkScheduling)
 }
 
@@ -267,6 +300,11 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementWorkScheduling(api string, wo
 
 func (c *SAPAPICaller) SalesPlant(salesPlant *requests.SalesPlant) {
 	outputDataSalesPlant, err := c.callProductSrvAPIRequirementSalesPlant("A_ProductPlantSales", salesPlant)
+	if err != nil {
+		c.log.Error(err)
+		return
+	}
+	err = c.outputter.Send(c.outputQueues[0], map[string]interface{}{"message": outputDataSalesPlant, "function": "ProductMasterSalesPlant"})
 	if err != nil {
 		c.log.Error(err)
 		return
@@ -303,6 +341,11 @@ func (c *SAPAPICaller) Accounting(accounting *requests.Accounting) {
 		c.log.Error(err)
 		return
 	}
+	err = c.outputter.Send(c.outputQueues[0], map[string]interface{}{"message": outputDataAccounting, "function": "ProductMasterAccounting"})
+	if err != nil {
+		c.log.Error(err)
+		return
+	}
 	c.log.Info(outputDataAccounting)
 }
 
@@ -331,6 +374,11 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementAccounting(api string, accoun
 
 func (c *SAPAPICaller) SalesOrganization(salesOrganization *requests.SalesOrganization) {
 	outputDataSalesOrganization, err := c.callProductSrvAPIRequirementSalesOrganization("A_ProductSalesDelivery", salesOrganization)
+	if err != nil {
+		c.log.Error(err)
+		return
+	}
+	err = c.outputter.Send(c.outputQueues[0], map[string]interface{}{"message": outputDataSalesOrganization, "function": "ProductMasterSalesOrganization"})
 	if err != nil {
 		c.log.Error(err)
 		return
@@ -367,6 +415,11 @@ func (c *SAPAPICaller) ProductDesc(productDesc *requests.ProductDesc) {
 		c.log.Error(err)
 		return
 	}
+	err = c.outputter.Send(c.outputQueues[0], map[string]interface{}{"message": outputDataProductDesc, "function": "ProductMasterProductDescription"})
+	if err != nil {
+		c.log.Error(err)
+		return
+	}
 	c.log.Info(outputDataProductDesc)
 }
 
@@ -395,6 +448,11 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementProductDesc(api string, produ
 
 func (c *SAPAPICaller) Quality(quality *requests.Quality) {
 	outputDataQuality, err := c.callProductSrvAPIRequirementQuality("A_ProductPlantQualityMgmt", quality)
+	if err != nil {
+		c.log.Error(err)
+		return
+	}
+	err = c.outputter.Send(c.outputQueues[0], map[string]interface{}{"message": outputDataQuality, "function": "ProductMasterQuality"})
 	if err != nil {
 		c.log.Error(err)
 		return

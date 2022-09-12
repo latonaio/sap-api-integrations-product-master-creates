@@ -1,7 +1,7 @@
 package sap_api_input_reader
 
 import (
-	"sap-api-integrations-product-master-creates/SAP_API_Caller/requests"
+	"sap-api-integrations-product-master-creates-rmq-kube/SAP_API_Caller/requests"
 )
 
 func (sdc *SDC) ConvertToGeneral() *requests.General {
