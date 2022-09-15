@@ -10,7 +10,7 @@
 		"BaseUnit": "PC",
 		"ValidityStartDate": "2022-01-25T18:30:08+09:00",
 		"ProductGroup": "01",
-		"Division": null,
+		"Division": "01",
 		"GrossWeight": "1",
 		"WeightUnit": "KG",
 		"SizeOrDimensionText": null,

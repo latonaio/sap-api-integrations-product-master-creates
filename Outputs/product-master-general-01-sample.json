@@ -3,13 +3,13 @@
 	"function": "sap-api-integrations-product-master-creates/SAP_API_Caller.(*SAPAPICaller).General",
 	"level": "INFO",
 	"message": {
-		"Product": "34",
+		"Product": "62",
 		"IndustrySector": "M",
 		"ProductType": "FERT",
 		"BaseUnit": "PC",
 		"ValidityStartDate": "2022-01-25T09:00:00+09:00",
 		"ProductGroup": "01",
-		"Division": "",
+		"Division": "01",
 		"GrossWeight": "1.000",
 		"WeightUnit": "KG",
 		"SizeOrDimensionText": "",
@@ -25,5 +25,5 @@
 			"ProductDescription": "test"
 		}
 	},
-	"time": "2022-09-06T18:50:30+09:00"
+	"time": "2022-09-16T00:29:08+09:00"
 }
