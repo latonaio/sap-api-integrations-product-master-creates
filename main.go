@@ -27,6 +27,7 @@ func main() {
 	accepter := getAccepter(inputSDC)
 	general := inputSDC.ConvertToGeneral()
 	plant := inputSDC.ConvertToPlant()
+	storageLocation := inputSDC.ConvertToStorageLocation()
 	mrpArea := inputSDC.ConvertToMRPArea()
 	procurement := inputSDC.ConvertToProcurement()
 	workScheduling := inputSDC.ConvertToWorkScheduling()
@@ -39,6 +40,7 @@ func main() {
 	caller.AsyncPostProductMaster(
 		general,
 		plant,
+		storageLocation,
 		mrpArea,
 		procurement,
 		workScheduling,
@@ -59,7 +61,7 @@ func getAccepter(sdc sap_api_input_reader.SDC) []string {
 
 	if accepter[0] == "All" {
 		accepter = []string{
-			"General", "Plant", "MRPArea", "Procurement",
+			"General", "Plant", "StorageLocation", "MRPArea", "Procurement",
 			"WorkScheduling", "SalesPlant",
 			"Accounting", "SalesOrganization", "ProductDesc",
 			"Quality",

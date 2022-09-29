@@ -56,6 +56,36 @@ func (sdc *SDC) ConvertToPlant() *requests.Plant {
 	}
 }
 
+func (sdc *SDC) ConvertToStorageLocation() *requests.StorageLocation {
+	dataProduct := sdc.Product
+	dataPlant := sdc.Product.Plant
+	data := sdc.Product.Plant.StorageLocation
+	return &requests.StorageLocation{
+		Product:                       dataProduct.Product,
+		Plant:                         dataPlant.Plant,
+		StorageLocation:                data.StorageLocation,
+		WarehouseStorageBin:            data.WarehouseStorageBin,
+		MaintenanceStatus:              data.MaintenanceStatus,
+		PhysicalInventoryBlockInd:      data.PhysicalInventoryBlockInd,
+		CreationDate:                   data.CreationDate,
+		IsMarkedForDeletion:            data.IsMarkedForDeletion,
+		DateOfLastPostedCntUnRstrcdStk: data.DateOfLastPostedCntUnRstrcdStk,
+		InventoryCorrectionFactor:      data.InventoryCorrectionFactor,
+		InvtryRestrictedUseStockInd:    data.InvtryRestrictedUseStockInd,
+		InvtryCurrentYearStockInd:      data.InvtryCurrentYearStockInd,
+		InvtryQualInspCurrentYrStkInd:  data.InvtryQualInspCurrentYrStkInd,
+		InventoryBlockStockInd:         data.InventoryBlockStockInd,
+		InvtryRestStockPrevPeriodInd:   data.InvtryRestStockPrevPeriodInd,
+		InventoryStockPrevPeriod:       data.InventoryStockPrevPeriod,
+		InvtryStockQltyInspPrevPeriod:  data.InvtryStockQltyInspPrevPeriod,
+		HasInvtryBlockStockPrevPeriod:  data.HasInvtryBlockStockPrevPeriod,
+		FiscalYearCurrentPeriod:        data.FiscalYearCurrentPeriod,
+		FiscalMonthCurrentPeriod:       data.FiscalMonthCurrentPeriod,
+		FiscalYearCurrentInvtryPeriod:  data.FiscalYearCurrentInvtryPeriod,
+		LeanWrhsManagementPickingArea:  data.LeanWrhsManagementPickingArea,
+	}
+}
+
 func (sdc *SDC) ConvertToMRPArea() *requests.MRPArea {
 	dataProduct := sdc.Product
 	dataPlant := sdc.Product.Plant

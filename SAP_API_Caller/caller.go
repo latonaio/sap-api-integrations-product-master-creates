@@ -17,7 +17,7 @@ import (
 type SAPAPICaller struct {
 	baseURL         string
 	sapClientNumber string
-	requestClient      *sap_api_request_client_header_setup.SAPRequestClient
+	requestClient   *sap_api_request_client_header_setup.SAPRequestClient
 	log             *logger.Logger
 }
 
@@ -33,6 +33,7 @@ func NewSAPAPICaller(baseUrl, sapClientNumber string, requestClient *sap_api_req
 func (c *SAPAPICaller) AsyncPostProductMaster(
 	general *requests.General,
 	plant *requests.Plant,
+	storageLocation *requests.StorageLocation,
 	mrpArea *requests.MRPArea,
 	procurement *requests.Procurement,
 	workScheduling *requests.WorkScheduling,
@@ -54,6 +55,11 @@ func (c *SAPAPICaller) AsyncPostProductMaster(
 		case "Plant":
 			func() {
 				c.Plant(plant)
+				wg.Done()
+			}()
+		case "StorageLocation":
+			func() {
+				c.StorageLocation(storageLocation)
 				wg.Done()
 			}()
 		case "MRPArea":
@@ -163,6 +169,38 @@ func (c *SAPAPICaller) callProductSrvAPIRequirementPlant(api string, plant *requ
 		return nil, xerrors.Errorf("bad response:%s", string(byteArray))
 	}
 	data, err := sap_api_output_formatter.ConvertToPlant(byteArray, c.log)
+	if err != nil {
+		return nil, xerrors.Errorf("convert error: %w", err)
+	}
+	return data, nil
+}
+
+func (c *SAPAPICaller) StorageLocation(storageLocation *requests.StorageLocation) {
+	outputDataStorageLocation, err := c.callProductSrvAPIRequirementStorageLocation("A_ProductStorageLocation", storageLocation)
+	if err != nil {
+		c.log.Error(err)
+		return
+	}
+	c.log.Info(outputDataStorageLocation)
+}
+
+func (c *SAPAPICaller) callProductSrvAPIRequirementStorageLocation(api string, storageLocation *requests.StorageLocation) (*sap_api_output_formatter.StorageLocation, error) {
+	body, err := json.Marshal(storageLocation)
+	if err != nil {
+		return nil, xerrors.Errorf("API request error: %w", err)
+	}
+	url := strings.Join([]string{c.baseURL, "API_PRODUCT_SRV", api}, "/")
+	params := c.addQuerySAPClient(map[string]string{})
+	resp, err := c.requestClient.Request("POST", url, params, string(body))
+	if err != nil {
+		return nil, xerrors.Errorf("API request error: %w", err)
+	}
+	defer resp.Body.Close()
+	byteArray, _ := ioutil.ReadAll(resp.Body)
+	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusCreated {
+		return nil, xerrors.Errorf("bad response:%s", string(byteArray))
+	}
+	data, err := sap_api_output_formatter.ConvertToStorageLocation(byteArray, c.log)
 	if err != nil {
 		return nil, xerrors.Errorf("convert error: %w", err)
 	}

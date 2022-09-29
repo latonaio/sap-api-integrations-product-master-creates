@@ -71,6 +71,41 @@ func ConvertToPlant(raw []byte, l *logger.Logger) (*Plant, error) {
 	return plant, nil
 }
 
+func ConvertToStorageLocation(raw []byte, l *logger.Logger) (*StorageLocation, error) {
+	p := &responses.StorageLocation{}
+	err := json.Unmarshal(raw, p)
+	if err != nil {
+		return nil, xerrors.Errorf("cannot convert to StorageLocation. raw data is:\n%v\nunmarshal error: %w", string(raw), err)
+	}
+	data := p.D
+	storageLocation := &StorageLocation{
+		Product:                        data.Product,
+		Plant:                          data.Plant,
+		StorageLocation:                data.StorageLocation,
+		WarehouseStorageBin:            data.WarehouseStorageBin,
+		MaintenanceStatus:              data.MaintenanceStatus,
+		PhysicalInventoryBlockInd:      data.PhysicalInventoryBlockInd,
+		CreationDate:                   data.CreationDate,
+		IsMarkedForDeletion:            data.IsMarkedForDeletion,
+		DateOfLastPostedCntUnRstrcdStk: data.DateOfLastPostedCntUnRstrcdStk,
+		InventoryCorrectionFactor:      data.InventoryCorrectionFactor,
+		InvtryRestrictedUseStockInd:    data.InvtryRestrictedUseStockInd,
+		InvtryCurrentYearStockInd:      data.InvtryCurrentYearStockInd,
+		InvtryQualInspCurrentYrStkInd:  data.InvtryQualInspCurrentYrStkInd,
+		InventoryBlockStockInd:         data.InventoryBlockStockInd,
+		InvtryRestStockPrevPeriodInd:   data.InvtryRestStockPrevPeriodInd,
+		InventoryStockPrevPeriod:       data.InventoryStockPrevPeriod,
+		InvtryStockQltyInspPrevPeriod:  data.InvtryStockQltyInspPrevPeriod,
+		HasInvtryBlockStockPrevPeriod:  data.HasInvtryBlockStockPrevPeriod,
+		FiscalYearCurrentPeriod:        data.FiscalYearCurrentPeriod,
+		FiscalMonthCurrentPeriod:       data.FiscalMonthCurrentPeriod,
+		FiscalYearCurrentInvtryPeriod:  data.FiscalYearCurrentInvtryPeriod,
+		LeanWrhsManagementPickingArea:  data.LeanWrhsManagementPickingArea,
+	}
+
+	return storageLocation, nil
+}
+
 func ConvertToMRPArea(raw []byte, l *logger.Logger) (*MRPArea, error) {
 	p := &responses.MRPArea{}
 	err := json.Unmarshal(raw, p)
